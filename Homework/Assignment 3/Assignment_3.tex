@@ -1,0 +1,478 @@
+%%%%%%%%%%%%%%%%%%
+% Based on https://github.com/jdavis/latex-homework-template
+%%%%%%%%%%%%%%%%%%
+
+\documentclass{article}
+
+\usepackage{fancyhdr}
+\usepackage{extramarks}
+
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amsfonts}
+
+\usepackage{tikz}
+\usepackage[plain]{algorithm}
+\usepackage{algpseudocode}
+
+\usepackage{lipsum}
+
+\usepackage{graphicx}
+
+%for urls
+\usepackage{hyperref}
+\hypersetup{
+	colorlinks = true,
+	linkcolor = teal,
+	anchorcolor = teal,
+	citecolor = teal,
+	filecolor = teal,
+	urlcolor = teal
+}
+
+%%%%%% Basic Document Settings %%%%%%%%%
+
+\topmargin=-0.45in
+\evensidemargin=0in
+\oddsidemargin=0in
+\textwidth=6.5in
+\textheight=9.0in
+\headsep=0.25in
+
+\linespread{1.1}
+
+%%%%%%%%%%%%%%%%%% Homework Details %%%%%%%%%%%%%%%
+% Title
+% Due date
+% University
+% Class
+% Instructor
+% Author
+% Author ID 
+
+\newcommand{\hmwkTitle}{Assignment\ \#3}
+\newcommand{\hmwkDueDate}{Dec 15, 2022}
+\newcommand{\hmwkClass}{Introduction to Artificial Intelligence (CS-487)}
+\newcommand{\hmwkClassInstructor}{Professor I. Tsamardinos}
+\newcommand{\hmwkUniversity}{University of Crete \\Department of Computer Science}
+\newcommand{\hmwkAuthorName}{Nikolaos Kougioulis}
+\newcommand{\hmwkAuthorID}{ID 1285}
+
+
+\pagestyle{fancy}
+\lhead{\hmwkAuthorName\ (\hmwkAuthorID)} %left head
+%\chead{\hmwkClass\ \hmwkTitle} %center head
+%\rhead{\date{\today}} %right head
+\rhead{\hmwkClass\ \hmwkTitle} 
+\lfoot{\lastxmark}
+\cfoot{\thepage}
+
+\renewcommand\headrulewidth{0.4pt}
+
+\setlength\parindent{0pt}
+
+\setcounter{secnumdepth}{0}
+\newcounter{partCounter}
+\newcounter{ExerciseCounter}
+\setcounter{ExerciseCounter}{1}
+\nobreak\extramarks{Exercise \arabic{ExerciseCounter}}{}\nobreak{}
+
+%%%%%% Homework Problem Environment %%%%%%
+\newenvironment{Exercise}[1][-1]{
+	\ifnum#1>0
+	\setcounter{ExerciseCounter}{#1}
+	\fi
+	\section{Exercise \arabic{ExerciseCounter}}
+	\setcounter{partCounter}{1}
+}{
+}
+% Alias for the Solution section header
+\newcommand{\solution}{\textbf{\large Solution:}}
+
+% Title Page %
+\title{
+	\centering
+	\includegraphics[height=1.5in]{images/background.png}
+	
+	 \vspace{1in}
+	\textmd{\textbf{\hmwkClass\ \hmwkTitle}}\\
+	
+	\normalsize\vspace{0.1in}\small{Due\ on\ \hmwkDueDate}\\
+	
+	\vspace{0.1in}
+	\large{\textit{\hmwkClassInstructor}} \\
+	\vspace{0.5in}
+	
+	\large{\hmwkUniversity}
+
+	\vspace{3in}
+	
+	\author{\textbf{\hmwkAuthorName} (\hmwkAuthorID)}
+	\date{\today}
+}
+
+% Various Helpers %
+\newcommand{\alg}[1]{\textsc{\bfseries \footnotesize #1}}
+% For derivatives
+\newcommand{\deriv}[1]{\frac{\mathrm{d}}{\mathrm{d}x} (#1)}
+% For partial derivatives
+\newcommand{\pderiv}[2]{\frac{\partial}{\partial #1} (#2)}
+% Integral dx
+\newcommand{\dx}{\mathrm{d}x}
+\newcommand{\E}{\mathbb{E}}
+\newcommand{\Var}{\mathrm{Var}}
+\newcommand{\Cov}{\mathrm{Cov}}
+\newcommand{\Bias}{\mathrm{Bias}}
+
+%\def\blankpage{%
+%	\clearpage%
+%	\thispagestyle{empty}%
+%	\addtocounter{page}{-1}%
+%	\null%
+%	\clearpage}
+
+
+%for code listings
+\usepackage{listings}
+\usepackage{xcolor}
+
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.99,0.99,0.99}
+
+\lstdefinestyle{mystyle}{
+	backgroundcolor=\color{backcolour},   
+	commentstyle=\color{codegreen},
+	keywordstyle=\color{magenta},
+	numberstyle=\tiny\color{codegray},
+	stringstyle=\color{codepurple},
+	basicstyle=\ttfamily\footnotesize,
+	breakatwhitespace=false,         
+	breaklines=true,                 
+	captionpos=b,                    
+	keepspaces=true,                 
+	numbers=left,                    
+	numbersep=5pt,                  
+	showspaces=false,                
+	showstringspaces=false,
+	showtabs=false,                  
+	tabsize=2
+}
+
+\lstset{style=mystyle}
+
+
+\begin{document}
+
+\maketitle
+	
+%\blankpage
+	
+%\setcounter{page}{1}
+
+
+%Exercise 1 
+
+\begin{Exercise}[1]
+
+Represent the following sentences in first-order logic, using a consistent vocabulary (which you must define):
+
+\begin{enumerate}
+\item Some students took French in spring 2001.
+\item Every student who takes French passes it.
+\item Only one student took Greek in spring 2001.
+\item The best score in Greek is always higher than the best score in French.
+\item Every person who buys a policy is smart.
+\item No person buys an expensive policy.
+\item There is an agent who sells policies only to people who are not insured.
+\item There is a barber who shaves all men in town who do not shave themselves.
+\item A person born in the UK, each of whose parents is a UK citizen or a UK resident, is a UK citizen by birth.
+\item A person born outside the UK, one of whose parents is a UK citizen by birth, is a UK citizen by descent.
+\item Politicians can fool some of the people all of the time, and they can fool all of the people some of the time, but they can’t fool all of the people all of the time.
+\item All Greeks speak the same language. (Use Speaks(x, l) to mean that person x speaks language l.)
+
+\end{enumerate}
+	
+\solution \\
+
+\begin{enumerate}
+	\item Student(x): whether x is a student, HasCourse(x,y,z): Student x takes course z on semester y \\
+	
+	$$ \exists ~s : \text{Student}(s) \wedge \text{HasCourse}(s, Spring2001, French) $$
+	
+	\vspace{15pt}
+	
+    \item Passes(x,y,z): Student x passes course z on semester y \\
+    
+    $$ \forall s, ~sem: \text{Student}(s) \wedge \text{HasCourse}(s,sem,French) \Rightarrow \text{Passes}(s,sem,French)$$
+    
+    \vspace{15pt}
+    
+    \item This is a bit trickier, as we need a way to write "only one" in first-order logic. One could write \\
+    
+    $$ \exists ~! s: \text{Student}(s) \wedge \text{HasCourse}(s,Spring2001, Greek) $$
+    
+     Intuitively, there is only one element $x$ satisfying property $P$ if-f for every other element $y$ satisfying $P$ we have $x=y$. That is, $\exists ~x : P(x) \wedge \left( \forall y : P(y) \Rightarrow x = y \right)$, or $\exists ~x : ~\forall y : P(y) \Leftrightarrow x = y$. So overall
+    
+    \begin{align*}
+       \resizebox{\textwidth}{!}
+    {%
+    	$\exists ~s: \left( \text{Student}(s) \wedge \text{HasCourse}(s,Spring2001, Greek) \right) \wedge \left( \forall s': \left( \text{Student}(s') \wedge \text{HasCourse}\left(s', Spring2001, Greek \right) \Rightarrow s=s' \right) \right)$
+    }
+    \end{align*}
+    
+    \vspace{15pt}
+    	
+    \item Score(x,y,z): The Grade of student x on semester y on course z \\
+    
+    $$ \exists ~s: ~\forall s', sem: ~\text{Score}(s, sem, Greek) > \text{Score}(s',sem,French)$$ 
+    
+    \vspace{15pt}
+    	
+    \item Person(x): whether x is a person, Buys(x,y): Person x buys item i, Policy(i): whether item i is a policy, Smart(x): whether person x is smart \\
+    
+    $$\forall ~p : \text{Person}(p) \wedge \left( \exists ~i: \text{Buys}(p,i) \wedge \text{Policy}(i) \right) \Rightarrow \text{Smart}(p) $$
+    
+   	\vspace{15pt}
+   	
+    \item Expensive(x): whether item x is expensive \\
+    
+    $$ \not \exists ~p,i : \text{Person}(p) \wedge \text{Buys}(p,i) \wedge \text{Policy}(i) \Rightarrow \text{Expensive}(i) ~~~~~\overset{\text{equiv.}}{\Longrightarrow}$$
+    
+    $$ \forall ~p,i:  \text{Person}(p) \wedge \text{Buys}(p,i) \wedge \text{Policy}(i) \Rightarrow \neg \text{Expensive}(i)  $$
+    
+   	\vspace{15pt}
+    
+    \item Agent(x): whether x is an agent or not, Sells(x,y,z): x sells item y to z, Insured(z): whether z is insured \\
+    
+    $$\exists ~a,pol,person: \text{Agent}(a) \wedge \text{Sells}(a,pol,person) \wedge \text{Policy}(pol) \wedge \text{Person}(person) \Rightarrow \neg \text{Insured}(person) $$
+    
+    \vspace{15pt}
+    
+    \item Barber(x): whether x is a barber, Man(y): whether y is a man, Shaves(z): whether z shaves himself, BarberShaves(x,y): whether (barber) x shaves y \\
+    
+    $$\displaystyle \exists ~b: \text{Barber}(b) \wedge \left( \forall p: ~\text{Man}(p) \wedge \neg \text{Shaves}(p) \Rightarrow \text{BarberShaves}(b,p) \right) $$
+    
+    \vspace{15pt}
+    	
+    \item Born(x,c): person x born in country c, Parent(x,y): parent of x is y, Citizen(x,c): person x is citizen (at birth) of country c, Resident(x,c): person x is a resident of country c \\
+    
+    \begin{equation*}
+    	\begin{aligned}
+    		\forall ~p: \text{Person}(p) & \wedge \text{Born}(p,UK) \wedge \left( \forall p_1, p_2: \left( \text{Parent}(p,p_1) \wedge \text{Parent}(p,p_2) \right) \right) \\
+    		& \wedge \left( \text{Citizen}(p_1,UK)\wedge\text{Citizen}(p_2,UK) \right) \\
+    		& \vee \left( \text{Resident}(p_1,UK)\wedge\text{Resident}(p_2,UK) \right) \Rightarrow \text{Citizen}(p,UK)
+    	\end{aligned}
+    \end{equation*}
+    
+    \vspace{15pt}
+    
+    \item Descent(x,c): person x is of c descent \\
+    
+    \begin{equation*}
+    	\begin{split}
+    		\forall ~p: \text{Person}(p) \wedge \neg \text{Born}(p,UK)
+    		&\wedge (\exists p_1,p_2 : \left( \text{Parent}(p,p_1) \vee \text{Parent}(p,p_2)\right) \\ &\wedge \left( \text{Citizen}(p_1,UK) \vee \text{Citizen}(p_2,UK) \right) \Rightarrow \text{Descent}(p,UK)
+    	\end{split}
+    \end{equation*}
+    
+    \vspace{15pt}
+    	
+    \item Politician(x): whether x is a politician, Fool(x,y,t): x fools y on time t \\
+    
+    Politicians can fool some of the people all of the time:    
+    $$
+    	\forall ~pol : \text{Politician}(pol) \wedge \left(
+    	\exists p, \forall t: \text{Fool}(pol,p,t) \wedge \text{Person}(p) \right)
+    $$
+    They can fool all of the people some of the time:    
+    $$
+    	\forall ~pol : \text{Politician}(pol) \wedge \left(
+    	\forall p, \exists t: \text{Fool}(pol,p,t) \wedge \text{Person}(p) \right)
+    $$
+    
+    They can’t fool all of the people all of the time: 
+    $$
+    	\forall ~pol : \text{Politician}(pol) \wedge \left(
+    	\forall p,t: \neg \text{Fool}(pol,p,t) \wedge \text{Person}(p) \right)
+    $$
+
+    All together:
+    \begin{equation*}
+    		\begin{split}
+    			\forall ~pol : \text{Politician}(pol) \bigwedge &
+    			 (\exists p, \forall t: \text{Fool}(pol,p,t) \wedge \text{Person}(p) ) \\
+    			& \wedge \left( \forall p, \exists t: \text{Fool}(pol,p,t) \wedge \text{Person}(p) \right) \\
+    			& \wedge \left( \forall p,t: \neg \text{Fool}(pol,p,t) \wedge \text{Person}(p) \right)
+    		\end{split}
+    	\end{equation*}
+    
+   	\vspace{15pt}
+   	
+    \item Greek(x): whether x is Greek (not specified by Birth or by Descent), Speaks(x,l): x speaks language l (not specified as "Greek" )\\
+    
+    $$ \forall ~p_1,p_2,l: \text{Greek}(p_1) \wedge \text{Greek}(p_2) \wedge \text{Speaks}(p_1,l) \Rightarrow \text{Speaks}(p_2,l)$$
+    
+\end{enumerate}
+		
+\end{Exercise}
+	
+\newpage
+
+
+%Exercise 2 
+\begin{Exercise}[2]
+
+Write a general set of facts and axioms to represent the assertion “Wellington heard about Napoleon’s death” and to correctly answer the question “Did Napoleon hear about Wellington’s death?” \\
+	
+\solution \\
+		
+Intuitively, if Wellington heard about Napoleon's death then it's obvious that Napoleon remains dead after his death, so he cannot hear about Wellington's death afterwards. So the answer to “Did Napoleon hear about Wellington’s death?” is False. \\
+
+In order to correctly write a general set of axioms and facts, we must also take into account time. Our reasoning to deduce the set of axioms and facts is the following: \\
+
+Time embodies direction, that is, \textit{asymmetry} ($t_1$ occurring after $t_0$ means that $t_0$ occured before $t_1$) and order, that is, \textit{transitivity} ($t_2$ occurring after $t_1$ and $t_1$ occurring after $t_0$ implies that $t_2$ occurs after $t_0$). We assume time is discrete instead of continuous, such as minutes or hours. We also assume that Wellington and Napoleon have good judgement so they cannot hear about each others death unless that event really happened. \\
+
+Wellington can only hear about Napoleon's death after the time of death. If Napoleon died at time $t_0$, then Wellington can only hear at a time $t_1 > t_0$. The atomic sentence $\text{HeardOfEvent}(p,e,t)$ is interpreted as "Person p heard of event e on time t", and $\text{Death}(p,t)$ as "Death of person p on time t". $\text{TimeHappened}(e)$ returns the time event $e$ occured. In our case of Wellington's or Napoleon's death. \\
+
+Wellington can only hear about Napoleon's death if he is not dead himself, so this gives us another axiom and allows us to deduce that Wellington must not be dead at time $t_0$. \\
+
+Our facts and axioms are:
+
+\begin{itemize}
+	\item Time property is assymetric:
+	$$ \forall ~t_0, t_1: ~(t_1 > t_0) \Rightarrow \neg (t_0 > t_1)$$
+	\item Time property is transitive:
+	$$ \forall ~t_0, t_1, t_2: ~ (t_1 > t_0) \wedge (t_2 > t_1) \Rightarrow (t_2 > t_0)  $$
+	\item If a person hears an event on time t, he is not dead at time t
+	$$ \forall ~p, e, t : \text{HeardOfEvent}(p,e,t) \Rightarrow \neg \text{Death}(p,t) $$
+	\item If a person is dead on time $t_0$, he keeps being dead after $t_0$
+	$$ \forall ~p, t_0: \text{Death}(p,t_0) \Rightarrow (\forall t>t_0 : \text{Death}(p,t))$$
+	\item A person can only hear an event after the time is has occurred
+	$$ \forall ~p,e,t : \text{HeardOfEvent}(p,e,t) \Rightarrow t > \text{TimeHappened}(e) $$
+	
+	In our case of Wellington's or Napoleon's death,
+	
+	$$ \forall ~p,e, ~t >t_0: \text{HeardOfEvent}(p,e,t) \Rightarrow t > \text{Death}(p,t_0) $$
+	
+	\item Death of $p$ at a time $t$ means that the Died event must be updated
+	$$ \exists ~p,t: \text{Death}(p,t_0) \Rightarrow \text{Died}(p)$$
+	
+Where $e \equiv \text{Died}(p)$ is the event of person p to be True when $p$ is dead, False otherwise. This is a way of performing bookkeeping (know if event happened) in order to pass the event as an argument when quering our KB (see on the next page). Another interpretation for this fact would be to perform skolemization with $t=t_0$, obtain $\text{Death}(p,t_0)$ and keep it as $e \equiv \text{Death}(p,t_0)$.
+	
+	\item Wellington heard about Napoleon's death:
+	$$ \exists ~t_0,t_1: \text{HeardOfEvent}(Wellington, \text{Death}(Napoleon,t_0),t_1)$$
+	 
+\end{itemize}
+
+To answer the query "Did Napoleon hear about Wellington's death?", we can pass $\text{Died}(Wellington)$ to the $\text{HeardOfEvent}$ predicate and perform the query $$\text{ASK}(KB, \text{HeardofEvent}(Napoleon, \text{Died}(Wellington), t)$$ or as mentioned before, using the skolemization step $$\text{ASK}(KB, \text{HeardofEvent}(Napoleon, e \equiv \text{Death}(Wellington, t_0), t)$$
+		
+\end{Exercise}
+
+\newpage
+
+
+%Exerise 3 
+
+\begin{Exercise}[3]
+
+This question considers Horn KBs, such as the following:
+
+\begin{equation}
+P(F(x)) \Rightarrow P(x)
+\end{equation}
+
+\begin{equation}
+Q(x) \Rightarrow P(F(x))
+\end{equation}
+
+\begin{equation}
+P(A)
+\end{equation}
+
+\begin{equation}
+Q(B)
+\end{equation}
+
+Let FC be a breadth-first forward-chaining algorithm that repeatedly adds all consequences of currently satisfied rules; let BC be a depth-first left-to-right
+backward-chaining algorithm that tries clauses in the order given in the KB. \\
+
+Which of the following are true? 
+
+\begin{enumerate}
+\item FC will infer the literal Q(A).
+\item FC will infer the literal P(B).
+\item If FC has failed to infer a given literal, then it is not entailed by the KB.
+\item BC will return true given the query P(B).
+\item If BC does not return true given a query literal, then it is not entailed by the KB.
+\end{enumerate}
+	
+\solution \\
+		
+Starting from known facts, Forward Chaining instantiates all the rules whose premises are satisfied, adding their conclusions to the known facts in the Knowledge Base using Modus Ponens, by Breadth-First Search. Backward Chaining works starting from the goal, and chains through rules to find known facts that support the proof, by Depth-First Search. \\
+
+\begin{enumerate}
+	\item False. There is no rule in the Knowledge Base to infer the literal $Q(A)$.
+	
+	\item True. Forward Chaining fires the rule $Q(x) \Rightarrow P(F(x))$ to infer $P(F(B))$ from the fact $Q(B)$. Then from the rule $P(F(x)) \Rightarrow P(x)$ FC infers $P(B)$ from the fact $P(F(B))$.
+	
+	\item True, because every inference is an application of Generalized Modus Ponens and answers every query whose answers are entailed by any KB of definite clauses (completeness).
+	
+	\item True. BC will fire $P(F(x)) \Rightarrow P(x)$, but it will not be able to apply it. Then, BC will try $Q(x) \Rightarrow P(F(x))$, applied with $\left\{ x / B \right\}$, because the KB contains the fact $Q(B)$. This generates $P(F(B))$ which can be proved by applying $P(F(x)) \Rightarrow P(x)$ with $\left\{ x / B \right\}$.
+	
+	\item False, because BC may suffer from repeated states and incompleteness (Chapter 9, Section 4, p. 294)\footnote{Russell S. J. \& Norvig P. (2020). \textit{Artificial intelligence: A Modern Approach} (4th ed.), Pearson.}. 
+\end{enumerate}
+
+\end{Exercise}
+
+\newpage
+
+%Exercise 4
+
+\begin{Exercise}[4]
+
+Suppose a knowledge base contains just the following first-order Horn clauses:
+
+$$\text{Ancestor(Mother}(x),x)$$
+
+$$\text{Ancestor}(x,y) \wedge \text{Ancestor}(y, z) \Rightarrow \text{Ancestor}(x, z)$$
+
+Consider a forward chaining algorithm that, on the j-th iteration, terminates if the KB contains a sentence that unifies with the query, else adds to the KB every atomic sentence that can be inferred from the sentences already in the KB after iteration $j-1$.
+
+\begin{enumerate}
+
+\item For each of the following queries, say whether the algorithm will (1) give
+an answer (if so, write down that answer); or (2) terminate with no answer;
+or (3) never terminate.
+
+(a) Ancestor(Mother(y), John)
+
+(b) Ancestor(Mother(Mother(y)), John)
+
+(c) Ancestor(Mother(Mother(Mother(y))), Mother(y))
+
+(d) Ancestor(Mother(John), Mother(Mother(John)))
+
+\item Can a resolution algorithm prove the sentence $\lnot$ Ancestor(John, John)
+from the original knowledge base? Explain how, or why not.
+
+\item Suppose we add the assertion that $\lnot$(Mother(x) = x) and augment the resolution algorithm with inference rules for equality. Now what is the answer to (2)?
+
+\end{enumerate}
+
+\solution \\
+
+\begin{enumerate}
+	
+	\item (a) Yes, right by instantiating $\left\{y / \text{John} \right\}$, (b) Yes, on the second iteration, by instantiating $\left\{ y / \text{John} \right\}$, (c) Yes, the empty set (d) No answer, as it does not terminate.
+
+	\item  Resolution cannot prove the sentence of John not being an Ancestor of John, as it is does not follow from the knowledge base. So  $\lnot$ Ancestor(John, John) cannot be proved by Resolution.
+	
+	\item Resolution is still unable to prove (2).
+	
+\end{enumerate}
+
+\end{Exercise}
+
+\end{document}
